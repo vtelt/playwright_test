@@ -16,3 +16,22 @@ test('get started link', async ({ page }) => {
   // Expects the URL to contain intro.
   await expect(page).toHaveURL(/.*intro/);
 });
+
+test('go to writing tests section documentation', async ({ page }) => {
+  await page.goto('https://playwright.dev/');
+
+    // Click the get started link.
+    await page.getByRole('link', { name: 'Get started' }).click();
+
+  // Click the writing tests link
+  await page
+    .getByRole('listitem')
+    .filter({ hasText: 'Writing tests' })
+    .getByRole('link', { name: 'Writing tests' })
+    .click();
+
+  // Expects the URL to contain writing-tests
+  await expect(page).toHaveURL(/.*writing-tests/);
+
+    
+});
